@@ -1,4 +1,4 @@
-Dépôt du projet Les Courses du Lion
+Dépôt du projet Les Courses du Lyon
 
 Auteurs : Larry Kiener, Mathilde Marchand, Pierre Jacqmond et Rayan Mejri
 
