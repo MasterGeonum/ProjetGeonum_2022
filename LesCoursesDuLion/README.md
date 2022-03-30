@@ -8,6 +8,7 @@ fonctionnalités interessantes:
 - Affichage de données geographiques avec leaflet avec légende/sélection de couche
 - Utilisation des geoservices IGN (isochrone et calcul de trajet)
 - Geotraitement à la volée avec GeoPandas
+- Algo de choix du maximum de diversité dans les commerces
 
 Pour lancer le projet:
 1. Importer coursesdulyon_data  dans une base postgres
