@@ -1,6 +1,6 @@
 Dépôt du projet Les Courses du Lyon
 
-Auteurs : Larry Kiener, Mathilde Marchand, Pierre Jacqmond et Rayan Mejri
+Auteurs : Larry Kiener, Mathilde Marchand, Pierre Jacquemond et Rayan Majri
 
 Pour lancer le projet:
 1. Importer coursesdulyon_data  dans une base postgres
