@@ -2,12 +2,12 @@
 
 Dépôt des projets de la promotion 2022 du Master de Géographiques Numériques.
 
-##Télécharger l'ensemble des projets :
+#Télécharger l'ensemble des projets :
 
 1. Aller dans "code"
 2. Télécharger en ZIP
 
-##Télécharger un seul projet :
+#Télécharger un seul projet :
 
 1. Cliquer sur le dossier du projet souhaité
 2. Copier l'URL
