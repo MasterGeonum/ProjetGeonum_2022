@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>La nuit est belle - Lumières Nuit-sibles</title>
+  <link rel="icon" href="images/atmospheric-pollution.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/lumieresnuitsibles.css" media="screen">
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <link id="u-theme-google-font" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+  <link id="u-page-google-font" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+</head>
+
+<body>
+  <div id="loading">
+    <div class="spinner-box">
+      <div class="blue-orbit leo"></div>
+      <div class="green-orbit leo"></div>
+      <div class="red-orbit leo"></div>
+      <div class="white-orbit w1 leo"></div>
+      <div class="white-orbit w2 leo"></div>
+      <div class="white-orbit w3 leo"></div>
+    </div>
+  </div>
+  <h1 style="margin-top: 30px;">Lumières nuit-sibles</h1>
+  <div class="container_menu">
+    <nav class="menu">
+      <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+      <label class="menu-open-button" for="menu-open">
+        <span class="lines line-1"></span>
+        <span class="lines line-2"></span>
+        <span class="lines line-3"></span>
+      </label>
+      <a href="http://192.168.43.17:5000/unavissurlanuit.html" class="menu-item mathilde"><img class="img3" src="images/star.png"> <span>Un avis sur la nuit?</span>
+      </a>
+      <a href="http://192.168.43.17:5000/accueil.html" class="menu-item accueil"> <img class="imghome" src="images/home.png"> <span>Accueil</span></a>
+      <a href="http://192.168.43.17:5000/lumieresnuitsibles.html" class="menu-item tom"> <img class="img1" src="images/atmospheric-pollution.png"> <span>Lumières
+          nuit-sibles</span></a>
+      <a href="http://192.168.43.17:5000/toulousebynight.html" class="menu-item cam"> <img class="img2" src="images/town.png"> <span>Toulouse by night</span></a>
+    </nav>
+  </div>
+  <div id="main">
+    <canvas id="canvas"></canvas>
+    <div class="map-container">
+      <div id="map"></div>
+    </div>
+    <div class="sidepanel">
+      <div class="temps_container"></div>
+      <div class="container">
+        <div class="progress-container">
+          <button class="btn" id="prev" disabled>Remonter le temps</button>
+          <div class="progress" id="progress" style="width: 50%;"></div>
+          <div id="step1" class="circle active">
+            <img class="steps" src="images/candle.png">
+          </div>
+
+          <div id="step2" class="circle">
+            <img class="steps" src="images/light-bulb.png">
+          </div>
+          <div id="step3" class="circle">
+            <img class="steps" src="images/streetlight.png">
+          </div>
+          <button class="btn" id="next">Avancer le temps</button>
+        </div>
+        <div class="dates">
+          <div id="date1" class="date">1992</div>
+          <div id="date2" class="date">2002</div>
+          <div id="date3" class="date">2013</div>
+        </div>
+          <div id="h5" class="text_timeline1">Pour visualiser l'évolution de la pollution lumineuse dans le temps,
+            remontez jusqu'à 1992 en cliquant sur les différents boutons temporels</div>
+            <div class="text_timeline2">Cliquez sur la carte pour obtenir des informations par commune en 2013
+            </div>
+        </div>
+    </div>
+    <div class="cover_diagramme"></div>
+    <div class="msg_diagramme">
+      <div class="texte_msg">Cette fonctionnalité n'est pas encore disponible pour cette période.</div>
+    </div>
+    <div class="boite_diagramme">
+      <div>
+        <canvas id="diagramme" width="500" height="700"></canvas>
+      </div>
+      <div>
+        <h5>Pour obtenir le graphique de pollution lumineuse par département, survolez la carte au dessus des
+          territoires souhaités</h5>
+      </div>
+    </div>
+  </div>
+  <div class="container_openpanel">
+    <img id="open_panel" src="images/question.png">
+  </div>
+  <div class="menu-tab">
+  </div>
+  <div class="menu-hide">
+    <h4>En savoir plus :</h4>
+    <div>
+      Cette carte représente la pollution lumineuse à l’échelle du territoire français. 
+    </div>
+    <div>
+      Afin de vectoriser les images satellites NOAA, nous avons créé des courbes de niveau par rapport aux valeurs d’intensité des pixels. Une fois converties en polygones, nous avons attribué à chaque entité une couleur issue d’un palette personnalisée, en fonction de la valeur d’intensité lumineuse.
+    </div>
+    <div>
+      On peut alors observer une forte intensité au niveau des grands pôles urbains, avec un halo de lumière qui s’étend jusque dans la périphérie. Les zones moins touchées sont donc les espaces ruraux et montagnards, même si une grande partie des Alpes subit la pollution des villes comme Grenoble ou Chambéry.
+    </div>
+    <div>
+      Cette pollution lumineuse est en constante augmentation ces dernières décennies, notamment à cause de l’extension urbaine des villes. Vous pouvez ainsi remonter le temps jusqu’en 1992 pour analyser les différences d’intensité lumineuse sur le territoire français. Notre méthode a été la même que pour la carte de 2013, avec des données NOAA disponibles sur différentes années.
+    </div>
+    <div>
+      Vous pouvez également grâce à nos différents outils faire une analyse multiscalaire. Une jointure spatiale nous a permis de lier les couches administratives à la couche de pollution lumineuse. Il vous est ainsi possible d’obtenir un indice de pollution lumineuse par commune, et un graphique par département. Ce graphique présente la part du territoire concerné par une certaine valeur de pollution. Ainsi, un département comme Paris aura 100% de sa superficie en zone polluée à 100%, là où la Creuse aura une majorité de surface peu concernée par la pollution lumineuse, inférieure à 20% (100% étant la valeur maximale de pollution lumineuse en France).
+    </div>
+      <h4>Sources :</h4>
+    <div>
+      © NOAA – 1992, 2002, 2013
+      © Geofla - 2013
+      © Admin Express - 2017
+      © Flaticon
+      © CodePen Fond par @Thibka, Loader par @AWebMan, Erreur par @AsyrafHussin<br>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="g1">
+      <img id="logo" src="images/logo_appli.png">
+      <img id="master" src="images/rvb_original.webp">
+    </div>
+    <div class="g2">
+      <p>@ <a href="https://mastergeonum.org/"style="color:#a7ade6">Master Géonum </a> 2022 </br>Mathilde MAUGER-VAUGLIN - Camille MOINIER -
+        Tom MONEGHETTI</p>
+    </div>
+    <div class="g3">
+      <img id="lyon" src="images/lyon2.png">
+      <img id="ens" src="images/ens.png">
+      <img id="sainte" src="images/sté.png">
+    </div>
+  </footer>
+</body>
+<script type="module" src="js/data_lumieresnuitsibles.js"></script>
+<script type="module" src="js/app_lumieresnuitsibles.js"></script>
+<script type="text/javascript" src="js/essai.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>La nuit est belle - Un avis sur la nuit ?</title>
+  <link rel="icon" href="images/mathilde.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+  <link id="u-theme-google-font" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+  <link id="u-page-google-font" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+  <link rel="stylesheet" href="css/unavissurlanuit.css" media="screen">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script type="text/javascript" src="../static/leaflet-geolet-main/geolet.js"></script>
+
+  <script src="Leaflet.Control.Opacity/dist/L.Control.Opacity.js"></script>
+  <link href="Leaflet.Control.Opacity/dist/L.Control.Opacity.css" rel="stylesheet" />
+
+  <!-- -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.12/leaflet.draw.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <!-- -->
+</head>
+
+<body>
+  <div id="loading">
+    <div class="spinner-box">
+      <div class="blue-orbit leo"></div>
+      <div class="green-orbit leo"></div>
+      <div class="red-orbit leo"></div>
+      <div class="white-orbit w1 leo"></div>
+      <div class="white-orbit w2 leo"></div>
+      <div class="white-orbit w3 leo"></div>
+    </div>
+  </div>
+  <Titre>Un avis sur la nuit ?</Titre>
+  <div class="container_menu">
+    <nav class="menu">
+      <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+      <label class="menu-open-button" for="menu-open">
+        <span class="lines line-1"></span>
+        <span class="lines line-2"></span>
+        <span class="lines line-3"></span>
+      </label>
+      <a href="http://192.168.43.17:5000/unavissurlanuit.html" class="menu-item mathilde"><img class="img3" src="images/star.png"> <span>Un avis sur la nuit?</span>
+      </a>
+      <a href="http://192.168.43.17:5000/accueil.html" class="menu-item accueil"> <img class="imghome" src="images/home.png"> <span>Accueil</span></a>
+      <a href="http://192.168.43.17:5000/lumieresnuitsibles.html" class="menu-item tom"> <img class="img1" src="images/atmospheric-pollution.png"> <span>Lumières
+          nuit-sibles</span></a>
+      <a href="http://192.168.43.17:5000/toulousebynight.html" class="menu-item cam"> <img class="img2" src="images/town.png"> <span>Toulouse by night</span></a>
+    </nav>
+  </div>
+
+  <div id="main">
+    <canvas id="canvas"></canvas>
+    <div class="map-container">
+      <div id="map"></div>
+    </div>
+    <div class="sidepanel">
+      <h4>Donnez votre avis</h4>
+      <div class="list_container">
+      <input type="button" id="button_ajout" onclick="startEdits()" value="Ajouter un avis">
+      <input type="button" id="button_ajout" onclick="stopEdits()" value="Annuler"><br>
+      <h4>Triez les avis par ville</h4>
+      <select id="monselect" onchange="choix_avis()">
+      </select>
+    </div>
+
+      <div class="description">
+        <h2>
+          Ajoutez votre avis sur le lieu de votre choix en plaçant un marqueur sur la carte.<br>
+          Pour ce faire, <span style="font-weight: bold">cliquez sur le bouton</span> "<span
+            style="color: #747cad">Ajoutez un avis</span>" puis sur l'icône <img class="pin1" src="images/pin.png">.
+          Ensuite, <span style="font-weight: bold">cliquez sur la carte</span> à l'endroit où vous souhaitez placer
+          votre avis. 
+          Dans la <span style="font-weight: bold">fenêtre de dialogue</span>, vous pouvez indiquer votre <span
+            style="font-weight: bold">nom</span>,
+          votre <span style="font-weight: bold">avis</span> ainsi que la <span style="font-weight: bold">ville</span>
+          dans laquelle vous vous trouvez. <br>
+          <span style="font-weight: bold " >Pour finir, pensez à actualiser la carte pour afficher votre avis.</span>
+          
+          <br>
+          Vous pouvez aussi <span style="font-weight: bold">consulter les avis</span> laissés par les autres
+          utilisateurs en cliquant sur les <img class="pin2" src="images/star.png"> de la carte.
+        </h2>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- -->
+  <div id="dialog" title="Donnez votre avis">
+
+    <form>
+      <fieldset style="border: none;">
+        <ul style="list-style-type: none; padding-left: 0px; width:200px; align-items:center">
+          <li1><label for="username">Votre nom</label></li1>
+          <li1><input type="text" name="username" id="username" placeholder="Prénom NOM"
+              class="text ui-widget-content ui-corner-all"></li1>
+          <li1><label for="description">Votre avis</label></li1>
+          <li1><input type="text" name="description" id="description" placeholder="Exemple : Vue dégagée"
+              class="text ui-widget-content ui-corner-all"></li1>
+
+          <li1><label for="ville">Votre ville</label></li1>
+          <li1><input type="text" name="ville" id="ville" placeholder="Exemple : Lyon"
+              class="text ui-widget-content ui-corner-all"></li1>
+
+        </ul>
+        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+      </fieldset>
+    </form>
+
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.12/leaflet.draw.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <!-- -->
+
+  <div class="container_openpanel">
+    <img id="open_panel" src="images/question.png">
+  </div>
+  <div class="menu-tab">
+  </div>
+  <div class="menu-hide">
+    <h4>En savoir plus :</h4>
+    <h3>
+      Sur cette carte, les zones sont catégorisées en fonction du nombre d’étoiles visibles. 
+      La classification de ces zones est inspirée de celle proposée par l’association AVEX. 
+      Nos classes sont justifiées de la façon suivante :
+      <li><span style="color: #242558 ; font-weight: bold">0 à 100 étoiles visibles </span> : seules les étoiles les plus brillantes sont visibles.</li>
+      <li><span style="color: #3f3f90 ; font-weight: bold">100 à 200 étoiles visibles</span> : les principales constellations se dessinent.</li>
+      <li><span style="color: #595ac7 ; font-weight: bold">200 à 250 étoiles visibles</span> : les constellations sont plus facilement reconnaissables.</li>
+      <li><span style="color: #7474ff ; font-weight: bold">250 à 500 étoiles visibles</span> : la Voie Lactée peut apparaître si les conditions sont bonnes.</li>
+      <li><span style="color: #a29cd0 ; font-weight: bold">500 à 1 000 étoiles visibles</span> : les halos de pollution lumineuse restent présents sur certaines parties du ciel.</li>
+      <li><span style="color: #e3d074 ; font-weight: bold">1 000 à 1 800 étoiles visibles</span> : la Voie Lactée est régulièrement visible, des étoiles moins lumineuses apparaissent.</li>
+      <li><span style="color: #fded71 ; font-weight: bold">Plus de 1 800 étoiles visibles</span> : le ciel est de qualité correcte et la Voie Lactée est nettement observable.</li>
+      Il est important de noter qu'un ciel de très bonne qualité permet d'observer plus de 3 000 étoiles. Il n'est pas possible pour l'humain de discerner plus de 5 000 étoiles.
+    </h3>
+      <h4>Sources :</h4>
+    <h6>
+      © Nighttime Lights Time Series (NOAA) – 2013 <br>
+      © Astronomie du Vexin AVEX <br>
+      © Flaticon<br>
+      © CodePen Fond par @Thibka, Loader par @AWebMan, Erreur par @AsyrafHussin<br>
+    </h6>
+   
+  </div>
+
+  <footer class="footer">
+    <div class="g1">
+      <img id="logo" src="images/logo_appli.png">
+      <img id="master" src="images/rvb_original.webp">
+    </div>
+    <div class="g2">
+      <p>@ <a href="https://mastergeonum.org/" style="color:#a7ade6">Master Géonum </a> 2022 </br>Mathilde MAUGER-VAUGLIN - Camille MOINIER -
+        Tom MONEGHETTI</p>
+    </div>
+    <div class="g3">
+      <img id="lyon" src="images/Lyon2.png">
+      <img id="ens" src="images/ens.png">
+      <img id="sainte" src="images/UJM.png">
+    </div>
+  </footer>
+  
+
+
+</body>
+
+<script type="text/javascript" src="js/unavissurlanuit.js"></script>
+
+<script type="text/javascript" src="js/essai.js"></script>
+
+</html>

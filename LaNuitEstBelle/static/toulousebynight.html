@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" /> 
+  <title>La nuit est belle - Toulouse by night</title>
+  <link rel="icon" href="images/town.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/toulousebynight.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  </head>
+
+<body>
+  <div id="loading">
+    <div class="spinner-box">
+      <div class="blue-orbit leo"></div>
+      <div class="green-orbit leo"></div>
+      <div class="red-orbit leo"></div>
+      <div class="white-orbit w1 leo"></div>
+      <div class="white-orbit w2 leo"></div>
+      <div class="white-orbit w3 leo"></div>
+    </div>
+  </div>
+    <nav class="menu">
+      <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+      <label class="menu-open-button" for="menu-open">
+       <span class="lines line-1"></span>
+       <span class="lines line-2"></span>
+       <span class="lines line-3"></span>
+     </label>
+     <a href="http://192.168.43.17:5000/unavissurlanuit.html" class="menu-item mathilde"><img class="img3" src="images/star.png"> <span>Un avis sur la nuit?</span>
+     </a>
+     <a href="http://192.168.43.17:5000/accueil.html" class="menu-item accueil"> <img class="imghome" src="images/home.png"> <span>Accueil</span></a>
+     <a href="http://192.168.43.17:5000/lumieresnuitsibles.html" class="menu-item tom"> <img class="img1" src="images/atmospheric-pollution.png"> <span>Lumières
+         nuit-sibles</span></a>
+     <a href="http://192.168.43.17:5000/toulousebynight.html" class="menu-item cam"> <img class="img2" src="images/town.png"> <span>Toulouse by night</span></a>
+   </nav>
+  <div id="main">
+  <h1>Toulouse by night</h1>
+  <canvas id="canvas"></canvas>
+    <div id="map"></div>
+    <div class="container_categ">
+    <div class="container_titre">
+      <h4> Allumez les lumières par catégorie : </h4>
+    </div>
+    <div class="container_boutons">
+      <button <a id="button1" href="#" onclick="this.classList.toggle('active')">COMMERCES</a></button>
+      <button <a id="button2" href="#" onclick="this.classList.toggle('active')">ENTREPRISES</a></button>
+      <button <a id="button3" href="#" onclick="this.classList.toggle('active')">LOISIRS</a></button>
+      <button <a id="button4" href="#" onclick="this.classList.toggle('active')">RESIDENCES</a></button>
+      <button <a id="button5" href="#" onclick="this.classList.toggle('active')">SERVICE PUBLIC</a></button>
+ </div>
+    </div>
+    <div class="wrapper">
+      <div class="drop-down">
+        <div class="drop-down-button open-close">
+          <span class="drop-down-title">Filtrer par quartier</span>
+          <img class="drop-arrow" src="images/down-arrow.png">
+        </div>
+        <div id="container_quartiers">
+          <label><input type="checkbox" class="switchall" id="tout"/>Tous les quartiers</label>
+        </div>
+      </div>
+    </div>
+    <div class="container_bigcase">
+      <div class="big_case">
+        <div id="desc_pourcent_main">Pollution lumineuse totale :</div>
+        <div id="pourcentage"></div>
+      </div>
+    </div>
+    <div id="hidden_div">
+      <ul id="text_hidden">
+        <div>A <span style="color: brown">100%</span>, aucune étoile n'est visible...</div>
+        <div>A <span style="color: rgb(204, 135, 32)">80%</span>, quelques lumières galactiques sont aperçues depuis la périphérie.</div>
+        <div>A <span style="color: rgb(211, 214, 27)">50%</span>, les étoiles filantes font leur apparition.</div>
+        <div>A <span style="color: rgb(64, 87, 2)">25%</span>, la majorité des étoiles sont au rendez-vous.</div>
+        <div>A <span style="color: rgb(40, 180, 27)">0%</span>, la voie lactée est devant vous !</div>
+      </ul>
+    </div>
+    <div class="container_tuto">
+      <div class = "tuto_visible">
+        <p id="titre_tuto">Conseils</p>
+        <div class="container_light">
+          <img id="light" src="images/tuto.png">
+        </div>
+      </div>
+      <div class="sous-container_tuto">
+        <ul>
+          <li class="content_tuto1">Cliquez sur les boutons de gauche pour allumer ou éteindre les différents types de bâtiments.</li>
+          <li class="content_tuto2">Sélectionnez les quartiers à allumer/éteindre dans le menu déroulant en haut de la carte.</li>
+          <li class="content_tuto1">Cliquez sur les bâtiiments pour afficher le nom des différents quartiers Toulousains.</li>
+          <li class="content_tuto2">Le pourcentage affiché correspond à l'impact de vos choix sur la pollution visuelle locale !</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container_openpanel">
+      <img id="open_panel" src = "images/question.png">
+    </div>
+    <div class="menu-tab">
+    </div>
+    <div class="menu-hide">
+      <h4>En savoir plus :</h4>
+    <div>
+      Les catégories de bâtiments ici présentées corresondent aux définitions suivantes :
+      <li><span style="color: #7475da ; font-weight: bold">Commerces :</span>Espace donnant lieu à un échange de capital (centres commerciaux, mode, librairies, restaurants, pharmacies, concessionnaires automobiles…).</li>
+      <li><span style="color: #86d694 ; font-weight: bold">Entreprises :</span> Espace hébergeant une activité professionnelle non-liée à la vente directe (bureaux, usines, banques, manufactures, laboratoires, hangars agricoles…).</li>
+      <li><span style="color: #c986be ; font-weight: bold">Loisirs :</span>Espace utilisé durant le temps libre (cinéma, lieu de culte, musée, piscine, stade, hôtel…).</li>
+      <li><span style="color: #868809 ; font-weight: bold">Résidences :</span>Espace utilisé comme lieu de vie (maisons individuelles, immeuble résidentiel, lotissements…).</li>
+      <li><span style="color: #6eb8c5 ; font-weight: bold">Service public</span>Espace de la vie publique ou appartenant à l’État (mairie, écoles, universités, gares, hôpitaux…).</li>
+    </div>
+    <div>
+      Il faut cependant noter que, malgré notre volonté de précision, il n’est pas possible de rendre compte de la totalité de la pollution lumineuse Toulousaine à l’aide des bâtiments uniquement. Ainsi, nous estimons que 20 % de la pollution totale nous échappe – elle provient certainement des éclairages publics, mais aussi d’une généralisation de la pollution lumineuse à plus grande échelle.
+    </div>
+    <div>
+      Les couleurs assignées aux bâtiments sont issues de données en « Digital Numbers », des données sans unités que l’on trouve souvent sur des données Raster. Derrière ces données se cachent un certain nombre de Watts/cm², ramenées sur des classes plus généralisées par le fournisseur des données – et donc impossibles à quantifier nous mêmes.
+    </div>
+      <h4>Sources :</h4>
+    <div>
+      © OpenStreetMap – 2021
+      © Toulouse OpenData - 2016
+      © EGO Data Mines - 2021
+      © Flaticon
+      © CodePen Fond par @Thibka, Loader par @AWebMan, Erreur par @AsyrafHussin<br>
+    </div>
+    </div>
+</div>
+<footer class="footer">
+  <div class="g1">
+    <img id="logo" src = "images/logo_appli.png">
+  <img id="master" src="images/mastergeo.png">
+  </div>
+  <div class="g2">
+    <p>@ <a href="https://mastergeonum.org/" style="color:#a7ade6">Master Géonum </a> 2022 </br>Mathilde MAUGER-VAUGLIN - Camille MOINIER -
+      Tom MONEGHETTI</p>
+  </div>
+  <div class="g3">
+    <img id="lyon" src="images/lyon2.png">
+    <img id="ens" src="images/ens.png">
+    <img id="sainte" src="images/sté.png">
+  </div>
+  </footer>
+</body>
+<script type="module" src="js/data_toulousebynight.js"></script>
+<script type="module" src="js/app_toulousebynight.js"></script>
+<script type="text/javascript" src="js/essai.js"></script>
+</html>
+
