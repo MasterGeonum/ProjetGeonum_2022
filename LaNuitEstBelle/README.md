@@ -1,4 +1,4 @@
-Dépôt du projet La Nuit est Belle
+# Dépôt du projet La Nuit est Belle
 
 ## Quelques notes importantes pour faire tourner le projet :
 
