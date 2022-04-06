@@ -1,3 +1,5 @@
 Dépôt du projet Genepi
 
-Auteurs :
+
+
+Auteurs : Llyodore MIMOUN, Saulo CALVACANTE, Eliezer IRA, Matthieu LACROIX.
