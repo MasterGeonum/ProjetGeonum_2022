@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trouve ton stage!</title>
+    <link rel="icon" href="images/logo.png">
+    <!--Charge les styles de la bibliothèque Cirrus-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"rel="stylesheet"></script>
+    <!--Charge les styles de la bibliothèque leaflet-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!--Charge les fichiers de style-->
+    <link rel="stylesheet" href="css/style.css" />
+    <!--Charge les interactions de la bibliothèque leaflet-->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!--Charge la barre de recherche d'adresse-->
+    <link rel="stylesheet" href="css/leaflet-geocoder-ban.css">
+    <!--Charge les polices Google-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed&family=Barlow+Semi+Condensed&display=swap">
+</head>
+
+<body>
+
+
+
+    <!--Titre-->
+    <header>
+        <img src="images/logo_1.png" height="30"> Trouve ton stage ! <img src="images/logo_2.png" height="30">
+        <a href="https://mastergeonum.org/">
+            <img src="images/logo_geonum.png" id="geonum"> 
+        </a>
+    </header>
+
+
+    <div class="wrapper">
+        <!--Carte-->
+        <div class="main">
+            <div id="map" class="Carte"> </div>
+        </div>
+
+        <aside class="aside aside-2">
+            <!--Liste Offres-->
+            <div class="scroller right" id="myList"></div>
+        </aside>
+
+        <aside class="aside aside-1">
+            <!--Filtres-->
+            <!--Formulaire choix collège-->
+            <form>
+                <select name="liste" Id="filtre_college" onChange="change_categorie()">
+                    <option value=alldata>Trouve ton collège</option>
+                    {% for college in ncolleges %}
+                    <option value={{ college }}>{{ college }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+
+
+            <!--Calendrier semaine stage-->
+            <label>Ta semaine de stage </label>
+            <form id="filtre_semaine">
+                <input id="semaine" type="week" name="semaine" min="2021-W35" max="2022-W22" value="2022-W11">
+            </form>
+
+
+
+            <!--Formulaire choix type-->
+            <label>Type de structure</label>
+            <form id="filtre_type">
+                <select name="type" class="form-select form-select-sm">
+                    <option value="Sans préférence">Sans préférence</option>
+                    <option value="Association">Association</option>
+                    <option value="Public">Public</option>
+                    <option value="Privé">Privé</option>
+                </select>
+            </form>
+
+            <!--Formulaire choix taille-->
+            <label>Taille de structure</label>
+            <form id="filtre_taille">
+                <select name="taille" class="form-select form-select-sm">
+                    <option value="Sans préférence">Sans préférence</option>
+                    <option value="Petite">Petite (1 à 99 personnes)</option>
+                    <option value="Moyenne">Moyenne (100 à 999 personnes)</option>
+                    <option value="Grande">Grande (1000 personnes et plus)</option>
+                </select>
+            </form>
+
+
+            <!--Formulaire choix lieu-->
+            <label>Cadre de travail</label>
+            <form id="filtre_lieu">
+                <select name="lieu" class="form-select form-select-sm">
+                    <option value="Sans préférence">Sans préférence</option>
+                    <option value="Intérieur">Intérieur 💻</option>
+                    <option value="Extérieur">Extérieur 🌳</option>
+                </select>
+            </form>
+
+
+            <!--Checkbox domaines d'activités-->
+            <div id="filtre_domaine">
+                <input type="checkbox" id="domaine" checked=true onclick="toggle(this)" />Tous les domaines<br />
+                {% for domaine in domaines %}
+                <input type="checkbox" id="domaine" checked=true name="domaines" value={{ domaine }}>{{ domaine }}
+                <br />
+                {% endfor %}
+            </div>
+        </aside>
+
+    </div>
+
+
+
+
+
+</body>
+
+
+<!-- Charge mes données sur la carte -->
+<div id="getdata" data-markers='{{ colleges|tojson }}'></div>
+<script src="data/metros.js"></script>
+<script src="data/trams.js"></script>
+<script src="data/arrets_metro.js"></script>
+<script src="data/arrets_tram.js"></script>
+<script src="js/leaflet-geocoder-ban.js"></script>
+<script type="text/javascript" src="js/lyon_leaflet.js"></script>
+<script src="js/tcl.js"></script>
+
+
+</html>

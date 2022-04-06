@@ -1,0 +1,205 @@
+body {
+  background-color: rgb(90, 147, 204);
+  font-family: 'Trebuchet MS';
+  color: #fff ;
+  }
+
+
+header{
+  font-size:xx-large;
+  text-align: center;
+}
+
+#geonum{
+  float:left;
+  height: 45px;
+  margin-right: 10px;
+}
+
+
+
+  /*//////////////////////////////////////////////////////////////////////////////*/
+ /*//////////////////////////////// Flexbox /////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////*/
+
+.wrapper{
+  display:flex;
+  justify-content:space-around;
+  flex-direction: row ;
+  flex-wrap: nowrap;
+  margin: 0 auto;
+  height:92vh;
+  flex-basis: 100%;
+  }
+
+
+@media all {
+  /* We invert order of first sidebar and main*/
+  .aside-1 { order: 1; }
+  .main    { order: 2; }
+  .aside-2 { order: 3; }
+}
+
+
+.main{
+  display:flex;
+  flex-basis: 60%;
+  }
+
+.aside-1{
+  display:flex;
+  flex-direction: column ;
+  flex-wrap: nowrap;
+  align-items: center;
+  flex-basis: 15%;
+  }
+
+.aside-2{
+  display:flex;
+  flex-basis: 20%;
+  }
+
+  /*//////////////////////////////////////////////////////////////////////////////*/
+ /*//////////////////////////////// Flexbox /////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////*/
+
+
+
+/* Scroller Liste Offres */
+.scroller {
+  width: 100%;
+  background-color: #fff;
+  overflow-y: scroll;
+  border-radius: 10px;
+  scrollbar-color: #395C79 rgb(211, 227, 243);
+}
+
+  
+/* Carte Leaflet */
+.Carte{
+  width: 100%;
+  border-radius: 10px;
+}
+
+  
+  
+/* Redéfinition de la Popup Leaflet */
+.Carte .leaflet-popup-content-wrapper {
+  background:#A9CBF0;
+  color:rgb(144, 135, 134);
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-weight: regular;
+  width: auto;
+  height: auto;
+  }
+  
+  /*//////////////////////////////////////////////////////////////////////////////*/
+ /*/////////////////////Stylisation du texte des pop-up//////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////*/
+
+.titre_stage {
+  font-size: 16pt;
+  font-weight: bold;
+  color: #1C2D5D;
+}
+
+titre_stage_2 {
+  font-size: 14pt;
+  font-weight: bold;
+  color: #25305F;
+}
+
+.div_liste{
+  border-bottom: solid rgb(90, 147, 204) 4px;
+}
+
+.decal{
+  margin-left: 5px;
+}
+
+.structure_domaine {
+  margin-bottom: -9px;
+  font-size: 14pt;
+  color: #3A5B79 ;
+}
+
+.structure_domaine_2 {
+  margin-bottom: -9px;
+  font-size: 14pt;
+  color: #395C79 ;
+}
+
+
+.logo {
+  float:right;
+  vertical-align:text-bottom;
+}
+
+.description {
+  font-size: 10pt;
+  color: #4D83B1 ;
+  margin-bottom: 10px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.adresse {
+  font-size: 12pt;
+  color: #000000 ;
+  margin-bottom: 7px;
+  right: 10px;
+}
+
+.periode {
+  font-size: 12pt;
+  color: #080808 ;
+}
+
+  /*//////////////////////////////////////////////////////////////////////////////*/
+ /*/////////////////////Stylisation des filtres//////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////*/
+
+  
+#filtre_college{
+  background-color: rgb(211, 227, 243);
+  border-color: rgb(211, 227, 243);
+  width: 200px;
+  height: 30px;
+  color: #395C79;
+  font-weight: bold;
+  border-radius: 10px;
+}
+  
+#semaine{
+  background-color: rgb(211, 227, 243);
+  border-color: rgb(211, 227, 243);
+  width: 200px;
+  height: 30px;
+  color: #395C79;
+  text-align:center;
+  font-weight: bold;
+  border-radius: 10px;
+}
+  
+#filtre_type{
+  width: 240px;
+  height: 30px;
+}
+
+#filtre_taille{
+  width: 240px;
+  height: 30px;
+}
+
+#filtre_lieu{
+  width: 240px;
+  height: 30px;
+}
+
+#filtre_domaine{
+  color: #fff ;
+}
+
+
+
+
