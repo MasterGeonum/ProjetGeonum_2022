@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Projet Geonum</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom Fonts from Google -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+
+
+</head>
+
+<body>
+<!-- Navigation -->
+<nav id="siteNav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Logo and responsive toggle -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <span class="glyphicon"></span> 
+                <FONT size="3pt">Etu-Loges-Ou</FONT>
+            </a>
+        </div>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active">
+                    <a href="accueil.html">Accueil</a>
+                </li>
+                <li>
+                    <a href="accueil.html#intro">Présentation</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Méthode <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="about-us">
+                        <li><a href="accueil.html#critères">Critères de recherche</a></li>
+                        <li><a href="accueil.html#donnees">Données</a></li>
+                        <li><a href="visualisation.html">Visualisation</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="accueil.html#contact">Contact</a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+</nav>
+
+
+
+	 <!-- Formulaire Section -->
+     <form action="requete" method="get" id="formulaire" >
+       
+        <fieldset> <!-- Section trajet--> 
+                <legend>Trajet et localisation du campus</legend> <!-- Titre du fieldset --> 
+            <p>
+                <!-- Campus-->
+                <label for="campus">Quel est votre campus ?</label><br />
+                <select name="campus" id="campus">
+                    <option value="c1">Université Lyon II - Campus Porte des Alpes</option>
+                    <option value="c2">ENS - Campus Debourg</option>
+                    <option value="c3">Université Lyon II - Campus des Quais</option>
+                    <option value="c4">Université Lyon III - Campus des Quais</option>
+                    <option value="c5">Université Lyon III - Campus Manufacture</option>
+                    <option value="c6">Université Lyon I - Campus la Doua</option>
+                    <option value="c7">Université Catholique - Campus St-Paul</option>
+                    <option value="c8">INSA</option>
+                </select><br /><br />
+
+                <!-- Mode de transport -->
+                <label for="transport">Quel mode de déplacement souhaites-tu utiliser ?</label><br />
+                <input type="radio" name="transport" value="TC" checked id="TC" /> <label for="TC">Transports en communs</label><br />
+                <input type="radio" name="transport" value="velo" id="velo" /> <label for="velo">Vélo</label><br />
+                <input type="radio" name="transport" value="marche" id="marche" /> <label for="marche">A pieds</label><br /><br />
+
+                <label for="temps">Temps de trajet max en minutes</label><br />
+                <input type="number" name="temps" id="temps" value=0 />
+            </p>
+        </fieldset>
+        
+        <fieldset><!-- Section loyer-->
+            <legend>Le loyer</legend> <!-- Titre du fieldset --> 
+            <p>
+            <!-- Budget-->
+            <label for="budget">Ton budget max pour le loyer</label><br />
+                <input type="number" id="budget" name="budget"  value=0 /><br /><br />
+            <!-- Nombre de pièce-->
+            <label for="piece">Combien de pièces cherches tu ? </label><br />
+            <input type="radio" name="piece" value="T1" checked id="T1" /> <label for="T1">Studio</label><br />
+            <input type="radio" name="piece" value="T2" id="T2" /> <label for="T2">Une chambre</label><br />
+            <input type="radio" name="piece" value="T3" id="T3" /> <label for="T3">Deux chambres et plus</label><br /><br />
+            </p>
+        </fieldset>
+
+        <fieldset><!-- Section cadre de vie-->
+            <legend>Le cadre de vie</legend> <!-- Titre du fieldset --> 
+            <p>
+
+            <!-- Commerces-->
+            <label>Quels commerces souhaites-tu avoir à proximité de chez toi ?</label><br />
+            Notes de 0 à 3 chaque commerce en fonction de son importance<br /><br />
+            <!-- Restaurants-->
+            <label for="restaurant">Restaurants</label><br />
+            <input type="range" id="restaurant" name="restaurant" list="tickmarks" value=0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0" >
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist>
+            0                           1
+            <br />
+
+            <!-- Alimentation-->
+            <label for="alimentation">Supermarchés</label><br />
+            <input type="range" id="alimentation" name="alimentation" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0" >
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Proximite-->
+            <label for="proximite">Commerces alimentaires de proximités</label><br />
+            <input type="range" id="proximite" name="proximite" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Boulangerie-->
+            <label for="boulangerie">Boulangeries</label><br />
+            <input type="range" id="boulangerie" name="boulangerie" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Shopping-->
+            <label for="shopping">Magasins (pour le shopping)</label><br />
+            <input type="range" id="shopping" name="shopping" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br /><br />
+
+            <!-- Culture et loisirs -->
+            <label>Quels lieux de culture et loisirs souhaites-tu avoir à proximité de chez toi ?</label><br />
+            Notes de 0 à 3 chaque équipement en fonction de son importance<br /><br />
+            <!-- Cinéma -->
+            <label for="cinema">Cinémas</label><br />
+            <input type="range" id="cinema" name="cinema" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Théâtre -->
+            <label for="theatre">Théâtres</label><br />
+            <input type="range" id="theatre" name="theatre" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Bibliothèque-->
+            <label for="biblio">Bibliothèques</label><br />
+            <input type="range" id="biblio" name="biblio" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Musique -->
+            <label for="musique">Salles de concert</label><br />
+            <input type="range" id="musique" name="musique" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Musée -->
+            <label for="musee">Musées, salles d'expositions</label><br />
+            <input type="range" id="musee" name="musee" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br /><br />
+
+            <!-- Sport -->
+            Quels équipements pour le sport souhaites-tu avoir à proximité de chez toi ?<br />
+            Notes de 0 à 3 chaque équipement en fonction de son importance<br /><br />
+            <!-- Natation -->
+            <label for="natation">Piscines</label><br />
+            <input type="range" id="natation" name="natation" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Skateparc -->
+            <label for="skate">Skateparcs</label><br />
+            <input type="range" id="skate" name="skate" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Combat -->
+            <label for="combat">Salles de combat</label><br />
+            <input type="range" id="combat" name="combat" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Sport Exterieur -->
+            <label for="sportext">Equipements de sport extérieurs</label><br />
+            <input type="range" id="sportext" name="sportext" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Sport Interieur -->
+            <label for="sportint">Equipements de sport intérieurs</label><br />
+            <input type="range" id="sportint" name="sportint" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Parcs -->
+            Souhaites-tu vivre à proximité des parcs ?<br /><br />
+            <label for="parc">Parcs urbains</label><br />
+            <input type="range" id="parc" name="parc" list="tickmarks" value= 0 min=0 max=3 range=1 />
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3"></option>
+            </datalist><br />
+
+            <!-- Nombre de pièce-->
+            <label for="densite">Dans quel type d'environnement urbain souhaites-tu vivre ? </label><br />
+            <input type="radio" name="densite" value="3" checked id="3"  /> <label for="3">Dense</label><br />
+            <input type="radio" name="densite" value="2" id="2" /> <label for="2">Densité intermediaire</label><br />
+            <input type="radio" name="densite" value="1" id="1" /> <label for="1">Peu dense</label><br />
+            <input type="radio" name="densite" value="0" id="0" /> <label for="0">Pas de préférence</label><br /><br />
+
+            <!-- Validation -->
+            <input type="submit" value="Envoyer" id="form_button" />
+        </p>
+     </form>
+
+
+    
+	<!-- Footer -->
+    <footer class="page-footer">
+    
+        	
+        <!-- Copyright etc -->
+        <div class="small-print">
+        	<div class="container">
+        		<p>Copyright &copy; Example.com 2015</p>
+        	</div>
+        </div>
+        
+    </footer>
+        	
+        <!-- Copyright etc -->
+        <div class="small-print">
+        	<div class="container">
+        		<p>Copyright &copy; Example.com 2015</p>
+        	</div>
+        </div>
+        
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    
+    <!-- Custom Javascript -->
+    <script src="js/custom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+</body>
+
+</html>
