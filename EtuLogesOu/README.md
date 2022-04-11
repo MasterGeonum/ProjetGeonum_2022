@@ -1,3 +1,3 @@
 Dépôt du projet Etu-loges où ?
 
-Auteurs :
+Auteurs : Kévin Grange, Paul Soulard, Lucie Veille, Jean Villard 
