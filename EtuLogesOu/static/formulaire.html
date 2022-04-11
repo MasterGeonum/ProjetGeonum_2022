@@ -1,0 +1,344 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Etu-loges-où</title>
+        
+ 
+    <link href="css/formulaire.css" rel="stylesheet">
+
+<div id=navbar_form> 
+  <a class="navbar_btn" href="accueil.html" style="text-decoration:none">
+    <span > Etu-Loges-Où</span> 
+  </a></div>
+
+</head>
+
+
+<body>
+<!-- multistep form -->
+<form action="requete" method="get" id="formulaire">
+    <!-- progressbar -->
+    <ul id="progressbar">
+      <li class="active">Trajet</li>
+      <li>Budget</li>
+      <li>Commerces</li>
+      <li>Culture</li>
+      <li>Sport</li>
+      <li>Environnement</li>
+    </ul>
+
+    <!-- fieldsets -->
+    <fieldset><!-- Trajets -->
+      <h2 class="fs-title">Trajet et localisation du campus</h2><br />
+      <label for="campus">Quel est ton campus ?</label><br /><br />
+      <select name="campus" id="campus">  
+        <option value="c11">CPE Lyon</option> 
+        <option value="c19">Ecole de Condé</option>
+        <option value="c21">ECAM</option>
+        <option value="c12">ENTPE</option>
+        <option value="c13">ENSAL</option> 
+        <option value="c2">ENS - Campus Debourg</option>
+        <option value="c8">INSA</option>
+        <option value="c9">IDRAC</option>
+        <option value="c18">ISG</option>
+        <option value="c14">Lycée du Parc</option>
+        <option value="c15">Lycée la Martinière - Campus Central</option>
+        <option value="c16">Lycée la Martinière - Campus Duchère</option>
+        <option value="c17">Lycée la Martinière - Montplaisir</option>
+        <option value="c7">Université Catholique - Campus St-Paul</option>
+        <option value="c6">Université Lyon I - Campus la Doua</option>
+        <option value="c20">Université Lyon I - Campus Gerland</option>
+        <option value="c22">Université Lyon I - Médecine - Campus Est</option>
+        <option value="c3">Université Lyon II - Campus des Quais</option>
+        <option value="c1">Université Lyon II - Campus Porte des Alpes</option>
+        <option value="c4">Université Lyon III - Campus des Quais</option>
+        <option value="c5">Université Lyon III - Campus Manufacture</option>    
+    </select><br /><br /><br />
+
+    <label for="transport">Quel mode de déplacement souhaites-tu utiliser ?</label><br /><br />
+            <input type="radio" name="transport" value="TC" checked id="TC" style="position: absolute; right:25%" /><h3 class="fs-subtitle" style="position: absolute; left:30%"> Transports en communs</h3><br /><br />
+            <input type="radio" name="transport" value="velo" id="velo" style="position: absolute; right:25%" /> <h3 class="fs-subtitle" style="position: absolute; left:30%"> Vélo</h3><br /><br />
+            <input type="radio" name="transport" value="marche" id="marche" style="position: absolute; right:25%" /> <h3 class="fs-subtitle" style="position: absolute; left:30%"> À pied</h3><br /><br /><br />
+
+            <label for="temps">Temps de trajet max en minutes </label><br />
+            <input type="number" name="temps" id="temps" value=5 min="5" max="100" style="width: 70%"/><br />
+      <input type="button" name="next" class="next action-button" value="Suivant" />
+    </fieldset>
+
+
+    <fieldset><!-- Loyer -->
+      <h2 class="fs-title">Le loyer</h2><br />
+
+        <!-- Budget-->
+        <label for="budget">Budget max pour le loyer</label><br />
+            <input type="number" id="budget" name="budget"  value=100 min="100" style="width: 70%"/><br /><br /><br />
+        <!-- Nombre de pièce-->
+        <label for="piece">Combien de pièces souhaites-tu avoir dans ton appartement ? </label><br /><br />
+        <input type="radio" name="piece" value="T1" checked id="T1" style="position: absolute; right:25%"/> <h3 class="fs-subtitle" style="position: absolute; left:30%"> Studio</h3><br /><br />
+        <input type="radio" name="piece" value="T2" id="T2" style="position: absolute; right:25%"/> <h3 class="fs-subtitle" style="position: absolute; left:30%"> Une chambre</h3><br /><br />
+        <input type="radio" name="piece" value="T3" id="T3" style="position: absolute; right:25%"/> <h3 class="fs-subtitle" style="position: absolute; left:30%"> Deux chambres et plus</h3><br /><br /><br />
+
+      <input type="button" name="previous" class="previous action-button" value="Précédent" />
+      <input type="button" name="next" class="next action-button" value="Suivant" />
+    </fieldset>
+
+
+    <fieldset><!-- Commerces -->
+      <h2 class="fs-title">Commerces proches de chez toi</h2>
+      <h3 class="fs-subtitle"> Note de 0 à 3 chaque commerce en fonction de son importance</h3>
+      <!-- Restaurants-->
+      <div class="sidebar">
+        <label for="restaurant">Restaurants</label><br />
+        <input type="range" id="restaurant" name="restaurant" list="tickmarks" value=0 min=0 max=3 range=1 />
+        <datalist id="tickmarks">
+            <option value="0">
+            <option value="1">
+            <option value="2">
+            <option value="3"></option>
+        </datalist>
+        <img src="images/chiffres.png" class="logo" alt= "Image" style="width:320px;height: 20px;" >
+        </div>
+        <br />
+
+        <!-- Alimentation-->
+        <div class="sidebar">
+        <label for="alimentation">Supermarchés</label><br />
+        <input type="range" id="alimentation" name="alimentation" list="tickmarks" value= 0 min=0 max=3 range=1 />
+        <datalist id="tickmarks">
+            <option value="0" >
+            <option value="1">
+            <option value="2">
+            <option value="3"></option>
+        </datalist><br />
+        </div>
+
+        <!-- Proximite-->
+        <div class="sidebar">
+        <label for="proximite">Commerces alimentaires de proximités</label><br />
+        <input type="range" id="proximite" name="proximite" list="tickmarks" value= 0 min=0 max=3 range=1 />
+        <datalist id="tickmarks">
+            <option value="0">
+            <option value="1">
+            <option value="2">
+            <option value="3"></option>
+        </datalist><br />
+        </div>
+
+        <!-- Boulangerie-->
+        <div class="sidebar">
+        <label for="boulangerie">Boulangeries</label><br />
+        <input type="range" id="boulangerie" name="boulangerie" list="tickmarks" value= 0 min=0 max=3 range=1 />
+        <datalist id="tickmarks">
+            <option value="0">
+            <option value="1">
+            <option value="2">
+            <option value="3"></option>
+        </datalist><br />
+        </div>
+
+        <!-- Shopping-->
+        <div class="sidebar">
+        <label for="shopping">Magasins (pour le shopping)</label><br />
+        <input type="range" id="shopping" name="shopping" list="tickmarks" value= 0 min=0 max=3 range=1 />
+        <datalist id="tickmarks">
+            <option value="0">
+            <option value="1">
+            <option value="2">
+            <option value="3"></option>
+        </datalist><br /><br />
+        </div>
+
+        <input type="button" name="previous" class="previous action-button" value="Précédent" />
+        <input type="button" name="next" class="next action-button" value="Suivant" />
+    </fieldset>
+
+
+    <fieldset><!-- Culture -->
+      <h2 class="fs-title">Lieux de culture proches de chez toi</h2>
+      <h3 class="fs-subtitle"> Note de 0 à 3 chaque équipements en fonction de son importance</h3>
+
+    <!-- Cinéma -->
+      <div class="sidebar">
+        <label for="cinema">Cinémas</label><br />
+        <input type="range" id="cinema" name="cinema" list="tickmarks" value= 0 min=0 max=3 range=1 />
+        <datalist id="tickmarks">
+            <option value="0"> 
+            <option value="1">
+            <option value="2">
+            <option value="3"></option>
+        </datalist>
+        <img src="images/chiffres.png" class="logo" alt= "Image" style="width:320px;height: 20px;" >
+        </div>
+
+        <!-- Théâtre -->
+        <div class="sidebar">
+        <label for="theatre">Théâtres</label><br />
+        <input type="range" id="theatre" name="theatre" list="tickmarks" value= 0 min=0 max=3 range=1 />
+        <datalist id="tickmarks">
+            <option value="0">
+            <option value="1">
+            <option value="2">
+            <option value="3"></option>
+        </datalist><br />
+        </div>
+
+        <!-- Bibliothèque-->
+        <div class="sidebar">
+        <label for="biblio">Bibliothèques</label><br />
+        <input type="range" id="biblio" name="biblio" list="tickmarks" value= 0 min=0 max=3 range=1 />
+        <datalist id="tickmarks">
+            <option value="0">
+            <option value="1">
+            <option value="2">
+            <option value="3"></option>
+        </datalist><br />
+        </div>
+
+        <!-- Musique -->
+        <div class="sidebar">
+        <label for="musique">Salles de concert</label><br />
+        <input type="range" id="musique" name="musique" list="tickmarks" value= 0 min=0 max=3 range=1 />
+        <datalist id="tickmarks">
+            <option value="0">
+            <option value="1">
+            <option value="2">
+            <option value="3"></option>
+        </datalist><br />
+        </div>
+
+        <!-- Musée -->
+        <div class="sidebar">
+        <label for="musee">Musées, salles d'expositions</label><br />
+        <input type="range" id="musee" name="musee" list="tickmarks" value= 0 min=0 max=3 range=1 />
+        <datalist id="tickmarks">
+            <option value="0">
+            <option value="1">
+            <option value="2">
+            <option value="3"></option>
+        </datalist><br /><br />
+        </div>  
+
+        <input type="button" name="previous" class="previous action-button" value="Précédent" />
+        <input type="button" name="next" class="next action-button" value="Suivant" />
+    </fieldset>
+
+    <fieldset><!-- Sport -->
+      <h2 class="fs-title">Lieux de sport proches de chez toi</h2>
+      <h3 class="fs-subtitle"> Notes de 0 à 3 chaque équipements en fonction de son importance</h3>
+
+      <!-- Natation -->
+      <div class="sidebar">
+      <label for="natation">Piscines</label><br />
+      <input type="range" id="natation" name="natation" list="tickmarks" value= 0 min=0 max=3 range=1 />
+      <datalist id="tickmarks">
+          <option value="0">
+          <option value="1">
+          <option value="2">
+          <option value="3"></option>
+      </datalist>
+      <img src="images/chiffres.png" class="logo" alt= "Image" style="width:320px;height: 20px;" >
+      </div>
+
+      <!-- Skateparc -->
+      <div class="sidebar">
+      <label for="skate">Skateparcs</label><br />
+      <input type="range" id="skate" name="skate" list="tickmarks" value= 0 min=0 max=3 range=1 />
+      <datalist id="tickmarks">
+          <option value="0">
+          <option value="1">
+          <option value="2">
+          <option value="3"></option>
+      </datalist><br />
+      </div>
+
+      <!-- Combat -->
+      <div class="sidebar">
+      <label for="combat">Salles de combat</label><br />
+      <input type="range" id="combat" name="combat" list="tickmarks" value= 0 min=0 max=3 range=1 />
+      <datalist id="tickmarks">
+          <option value="0">
+          <option value="1">
+          <option value="2">
+          <option value="3"></option>
+      </datalist><br />
+      </div>
+
+      <!-- Sport Exterieur -->
+      <div class="sidebar">
+      <label for="sportext">Equipements de sport extérieur</label><br />
+      <input type="range" id="sportext" name="sportext" list="tickmarks" value= 0 min=0 max=3 range=1 />
+      <datalist id="tickmarks">
+          <option value="0">
+          <option value="1">
+          <option value="2">
+          <option value="3"></option>
+      </datalist><br />
+      </div>
+
+      <!-- Sport Interieur -->
+      <div class="sidebar">
+      <label for="sportint">Equipements de sport intérieur</label><br />
+      <input type="range" id="sportint" name="sportint" list="tickmarks" value= 0 min=0 max=3 range=1 />
+      <datalist id="tickmarks">
+          <option value="0">
+          <option value="1">
+          <option value="2">
+          <option value="3"></option>
+      </datalist><br /><br /><br />
+      </div>
+
+      <input type="button" name="previous" class="previous action-button" value="Précédent" />
+        <input type="button" name="next" class="next action-button" value="Suivant" />
+
+    </fieldset>
+
+    <fieldset><!-- Environnement -->
+      <h2 class="fs-title">Environnement</h2><br />
+
+      <!-- Parcs -->
+      <div class="sidebar">
+        <label>Souhaites-tu vivre à proximité des parcs ?</label><br />
+        <input type="range" id="parc" name="parc" list="tickmarks" value= 0 min=0 max=3 range=1 />
+        <datalist id="tickmarks">
+            <option value="0">
+            <option value="1">
+            <option value="2">
+            <option value="3"></option>
+        </datalist>
+        <img src="images/chiffres.png" class="logo" alt= "Image" style="width:320px;height: 20px;" >
+        </div><br /><br />
+
+        <!-- Nombre de pièce-->
+        <label for="densite">Dans quel type d'environnement urbain souhaites-tu vivre ? </label><br /><br />
+        <input type="radio" name="densite" value="3" id="3" style="position: absolute; right:25%" /> <h3 class="fs-subtitle" style="position: absolute; left:30%"> Très urbain</h3><br /><br />
+        <input type="radio" name="densite" value="2" id="2" style="position: absolute; right:25%" /> <h3 class="fs-subtitle" style="position: absolute; left:30%"> Urbain</h3><br /><br />
+        <input type="radio" name="densite" value="1" id="1" style="position: absolute; right:25%"/> <h3 class="fs-subtitle" style="position: absolute; left:30%"> Calme</h3><br /><br />
+        <input type="radio" name="densite" value="0" checked id="0" style="position: absolute; right:25%"/> <h3 class="fs-subtitle" style="position: absolute; left:30%">Pas de préférences</h3><br /><br /><br />
+
+        <input type="button" name="previous" class="previous action-button" value="Précédent" />
+        <input type="submit" name="submit" class="submit action-button" value="Envoyer" />
+
+    </fieldset>
+
+  </form>
+
+<!-- jQuery -->
+<script src="js/jquery-1.11.3.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="js/jquery.easing.min.js"></script>
+
+<!-- Formulaire -->
+<script src="js/formulaire.js"></script>
+
+
+
+
+
+
+
+
+</body>
+

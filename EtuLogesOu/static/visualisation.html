@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Projet Geonum</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom Fonts from Google -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    
+
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- Data -->
+    <!-- <script src="data/carreaux_quartier.js"></script> -->
+    <script src = "js/nomdesquartier.js"></script>
+    <script src = "js/reseau_metro_tram.js"></script>
+    <script src = "js/reseau_bus.js"></script>
+    <script src = "js/station_velov.js"></script>
+    <script src = "js/campus.js"></script>
+
+    
+
+</head>
+
+<body>
+    
+    Navigation
+    <nav id="siteNav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Logo and responsive toggle -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                	<span class="glyphicon"></span> 
+                	Etu-Loges-Où
+                </a>
+            </div>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active">
+                        <a href="accueil.html">Accueil</a>
+                    </li>
+                    <li>
+                        <a href="formulaire.html">Formulaire</a>
+                    </li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Méthode <span class="caret"></span></a>
+						<ul class="dropdown-menu" aria-labelledby="about-us">
+                            <li><a href="accueil.html#intro">Présentation</a></li>
+							<li><a href="accueil.html#criteres">Critères de recherche</a></li>
+							<li><a href="accueil.html#donnees">Données</a></li>
+							<li><a href="#">Visualisation</a></li>
+						</ul>
+					</li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+
+
+
+	 <!-- Map Section -->
+    <br></br>
+    <div>
+        <br>
+        <img src = 'images/Legende_discretisation.png' alt ="Image" style="width:95%;height: 50%;" class="centralite"></img>
+        
+    </div>
+
+    <div class="conteneur">
+        <div id=  "map"></div>
+ 
+        <div class= "droite">
+            <div id = "sc_gl"><br> <strong> Score global <br> <span id="score_global"> </span> /10</strong></br> <br></div>
+            <div class="line-1"></div>
+            <div> <br> <img src = 'images/quartier.png' alt = "Image" style = "width : 20%; height: 20%;" ></img></div>
+            <div id = "nnqt"> <span id="info_quartier"></span> </br><br></div>
+            <div class="line-1"></div>
+            <div> <br> <img src = 'images/transports.png' alt = "Image" style = "width : 10%; height: 10%;" ></img></div>
+            <div id = "transport"> Temps d'accès au campus <br> <span id="info_transport"></span> min</div>
+            <div id = "sc_t"><br> Score transport <br> <span id="score_transport"> </span> /10</br></div>
+            <br>
+            <div class="line-1"></div>
+            <div> <br> <img src = 'images/loyer.png' alt = "Image" style = "width : 15%; height: 15%;" ></img></div>
+            <div id = "loyer"> Loyer moyen des <span id="info_type"></span> <br> <span id="info_loyer"></span> € </br></div>
+            <div id = "sc_l"><br> Score logement <br> <span id="score_logement"> </span> /10</br><br></div>
+            <div class="line-2"></div>
+            <div> <br> <img src = 'images/cdv.png' alt = "Image" style = "width : 15%; height: 15%;" ></img></div>
+            <div id = "sc_cdv"> Score cadre de vie <br> <span id="score_cdv"> </span> /10</br></div>
+            <br></br>
+
+        </div>
+
+    
+	<!-- Footer -->
+    
+        
+   
+    </div>
+    <footer class="page-footer">
+    
+    	<!-- Contact Us -->
+        <div class="contact" id="contact">
+        	<div class="container">
+				<h2 class="section-heading">Contactez-nous !</h2>
+				<p><span class="glyphicon glyphicon-earphone"></span><br> 06 66 29 25 97</p>
+				<p><span class="glyphicon glyphicon-envelope"></span><br> lucie.veille2@gmail.com</p>
+        	</div>
+        </div>
+        	
+        <!-- Copyright etc -->
+        <div class="small-print">
+        	<div class="container">
+        		<p>Copyright &copy; Example.com 2015</p>
+        	</div>
+        </div>
+        
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    
+    <!-- Custom Javascript -->
+    <script src="js/custom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    
+    <!-- Carte Javascript -->
+    <script type="text/javascript" src="js/visual.js"></script>
+
+</body>
+
+</html>
